@@ -11,6 +11,3 @@ variable "db_username" {
   description = "master_username"
   type = string
 }
-
-#[aws_security_group.bayer_db_sg.id]
-

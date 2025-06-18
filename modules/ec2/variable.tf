@@ -1,6 +1,3 @@
-#[aws_security_group.bayer_app_sg.id]
-#"ami-0b09627181c8d5778"
-
 variable "ami" {
   description = "AMI ID for the EC2 instance"
   type        = string
