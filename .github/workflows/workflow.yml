@@ -76,30 +76,29 @@ jobs:
         id: validate
         run: terraform validate
 
-#      - name: Terraform test
-#        id: test
-#        run: terraform test
-#        continue-on-error: true 
-#
-#      - name: Run tfsec
-#        uses: aquasecurity/tfsec-action@v1.0.0
-#        continue-on-error: true
-#
-#      - name: Install Conftest
-#        run: |
-#          curl -L https://github.com/open-policy-agent/conftest/releases/download/v0.45.0/conftest_0.45.0_Linux_x86_64.tar.gz | tar xz
-#          sudo mv conftest /usr/local/bin
-#
-#      - name: Terraform Init & Plan
-#        run: |
-#          terraform init
-#          terraform plan -out=tfplan.binary
-#          terraform show -json tfplan.binary > tfplan.json
-#
-#      - name: Run OPA Policy Check
-#        run: conftest test tfplan.json --policy policy/
-#        continue-on-error: true
+      - name: Terraform test
+        id: test
+        run: terraform test
+        continue-on-error: true 
 
+      - name: Run tfsec
+        uses: aquasecurity/tfsec-action@v1.0.0
+        continue-on-error: true
+
+      - name: Install Conftest
+        run: |
+          curl -L https://github.com/open-policy-agent/conftest/releases/download/v0.45.0/conftest_0.45.0_Linux_x86_64.tar.gz | tar xz
+          sudo mv conftest /usr/local/bin
+
+      - name: Terraform Init & Plan
+        run: |
+          terraform init
+          terraform plan -out=tfplan.binary
+          terraform show -json tfplan.binary > tfplan.json
+
+      - name: Run OPA Policy Check
+        run: conftest test tfplan.json --policy policy/
+        continue-on-error: true
       - name: Terraform Apply
         if: contains(github.event.head_commit.message, 'terraform apply')
         run: terraform apply -auto-approve
