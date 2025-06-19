@@ -52,17 +52,15 @@ jobs:
           tflint --init
           tflint --recursive
 
-      # Install Checkov.
       - name: Install Checkov
         run: |
           python -m pip install --upgrade pip
           pip install checkov
 
-      # Run Checkov to scan Terraform files.
       - name: Run Checkov Scan
         continue-on-error: true
         run: |
-          checkov -d ./ --skip-path .github/* --soft-fail    # Scan the current directory for Terraform files.
+          checkov -d ./ --skip-path .github/* --soft-fail
 
       - name: Terraform Init
         id: init
@@ -76,10 +74,10 @@ jobs:
         id: validate
         run: terraform validate
 
-      - name: Terraform test
+      - name: Terraform Test
         id: test
         run: terraform test
-        continue-on-error: true 
+        continue-on-error: true
 
       - name: Run tfsec
         uses: aquasecurity/tfsec-action@v1.0.0
@@ -99,6 +97,7 @@ jobs:
       - name: Run OPA Policy Check
         run: conftest test tfplan.json --policy policy/
         continue-on-error: true
+
       - name: Terraform Apply
         if: contains(github.event.head_commit.message, 'terraform apply')
         run: terraform apply -auto-approve
@@ -107,7 +106,7 @@ jobs:
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'destroy'
         run: terraform destroy -auto-approve
 
-   docs:
+  docs:
     name: Render Terraform Docs
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
