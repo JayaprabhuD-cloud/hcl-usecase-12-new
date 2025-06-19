@@ -8,3 +8,4 @@ variable "db_security_group_id" {
 }
 
 variable "db_username" {}
+variable "usecase_no" {}
