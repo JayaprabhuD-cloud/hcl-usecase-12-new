@@ -25,10 +25,10 @@ module "ec2" {
 
 module "rds" {
   source                  = "./modules/rds"
-  usecase_no              = var.usecase_no
   private_subnet_ids      = module.vpc.private_subnet_ids
   db_security_group_id    = [module.vpc.db_security_group_id]
   db_username             = var.db_username
+  usecase_no              = var.usecase_no
 }
 
 
