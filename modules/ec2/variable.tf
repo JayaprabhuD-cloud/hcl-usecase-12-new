@@ -24,7 +24,4 @@ variable "iam_role_name" {
   type        = string
 }
 
-variable "usecase_no" {
-  description = "Variable for usecase"
-  type        = string
-}
+variable "usecase_no" {}

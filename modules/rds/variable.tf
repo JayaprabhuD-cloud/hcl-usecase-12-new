@@ -7,7 +7,4 @@ variable "db_security_group_id" {
   type        = list(string)
 }
 
-variable "db_username" {
-  description = "master_username"
-  type = string
-}
+variable "db_username" {}

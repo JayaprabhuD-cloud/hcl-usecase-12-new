@@ -1,4 +1,1 @@
-variable "usecase_no" {
-  description = "Variable for usecase"
-  type        = string
-}
+variable "usecase_no" {}

@@ -3,10 +3,7 @@ variable "vpc_cidr_block" {
   type = string
 }
 
-variable "usecase_no" {
-  description = "Variable for usecase"
-  type        = string
-}
+variable "usecase_no" {}
 
 variable "public_subnet_1_cidr" {}
 variable "private_subnet_1_cidr" {}
