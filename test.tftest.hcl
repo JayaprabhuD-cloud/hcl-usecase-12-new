@@ -6,7 +6,7 @@ run "name_validation" {
   command = plan
 
   assert {
-    condition     = module.vpc.vpc_tags["Name"] == var.usecase_no-vpc
+    condition     = module.vpc.vpc_tags["Name"] == var.usecase_no
     error_message = "TEST_ERROR: VPC name is not as expected"
   }
 }
